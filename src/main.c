@@ -4,7 +4,7 @@
 #include "SDLerr_helper.h"
 
 
-static volatile bool running = true;
+volatile bool running = true;
 
 static SDL_Window* s_win;
 static SDL_GPUDevice* s_gpudev;
@@ -41,7 +41,6 @@ static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], si
 	);
 }
 
-/* SOURCE : https://hamdy-elzanqali.medium.com/let-there-be-triangles-sdl-gpu-edition-bd82cf2ef615 */
 int main()
 {
 	FAILON(SDL_Init(SDL_INIT_VIDEO));
