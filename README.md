@@ -32,4 +32,5 @@ Maybe I should move it to another repo and call it "Crappy SDL3 error handling m
 Also, I use C23's #embed preprocessor directive to include compiled shaders into the binary, which removes quite a lot of code and handles everything at compiletime without any runtime overhead.
 
 If you don't want to use C23, you can actually read the spirv compiled shaders with SDL at runtime, the tutorial mentioned above does that really simply.
+And don't forget to replace `nullptr`'s with `NULL`'s
 

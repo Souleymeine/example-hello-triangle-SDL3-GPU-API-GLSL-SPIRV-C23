@@ -20,15 +20,14 @@ struct vertex {
 	float r, g, b, a; // vec4 color
 };
 
-static constexpr struct vertex tri_verts[3] =
-{
+static constexpr struct vertex tri_verts[3] = {
 	{ 0.0f, 0.5f, 0.0f,    1.0f, 0.0f, 0.0f, 1.0f }, // top
 	{ -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 1.0f }, // left
 	{ 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 1.0f, 1.0f }, // right
 };
 
 static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], size_t code_size, SDL_GPUShaderStage shader_stage,
-	Uint32 sampler_cnt, Uint32 uniformbuf_cnt, Uint32 storagebuf_cnt, Uint32 storage_tex_Cnt)
+	uint32_t sampler_cnt, uint32_t uniformbuf_cnt, uint32_t storagebuf_cnt, uint32_t storage_tex_Cnt)
 {
 	return SDL_CreateGPUShader(device,
 		&(struct SDL_GPUShaderCreateInfo) {
