@@ -36,7 +36,7 @@ do {                                                                 \
 # define DECLARE_OR_FAIL_ON_RET(type, varname, expr, errmsg, EXIT_FAILURE, line) type varname = expr
 #endif
 
-#define FAILON(condition)               FAIL_ON_RET(condition, -1, __LINE__, __FILE__)
+#define FAILON(expr)                    FAIL_ON_RET(expr, -1, __LINE__, __FILE__)
 #define ASSIORFAIL(var, expr)           ASSIGN_OR_FAIL_ON_RET(var, expr, EXIT_FAILURE, __LINE__, __FILE__)
 #define DECLORFAIL(type, varname, expr) DECLARE_OR_FAIL_ON_RET(type, varname, expr, EXIT_FAILURE, __LINE__, __FILE__)
 
