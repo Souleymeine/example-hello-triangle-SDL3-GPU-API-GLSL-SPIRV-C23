@@ -154,7 +154,7 @@ int main()
 	);
 	SDL_DrawGPUPrimitives(render_pass, 3, 1, 0, 0);
 
-	SDL_EndGPURenderPass(render_pass);
+	SDL_EndGPURenderPass(render_pass); /* end render_pass -------------------------------------------- */
 	FAILON(SDL_SubmitGPUCommandBuffer(cmdbuf));
 
 //	--- Main Loop ---
