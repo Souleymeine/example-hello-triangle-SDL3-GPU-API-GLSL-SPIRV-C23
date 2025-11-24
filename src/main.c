@@ -14,7 +14,6 @@ static SDL_GPUGraphicsPipeline* s_graphics_pipeline;
 
 volatile bool running = true;
 
-/* SOURCE : https://hamdy-elzanqali.medium.com/let-there-be-triangles-sdl-gpu-edition-bd82cf2ef615 */
 
 struct vertex {
 	float x, y, z;    // vec3 position
@@ -46,6 +45,7 @@ static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], si
 	);
 }
 
+/* SOURCE : https://hamdy-elzanqali.medium.com/let-there-be-triangles-sdl-gpu-edition-bd82cf2ef615 */
 int main()
 {
 	FAILON(SDL_Init(SDL_INIT_VIDEO));
