@@ -50,7 +50,13 @@ int main()
 	FAILON(SDL_Init(SDL_INIT_VIDEO));
 
 	ASSIORFAIL(s_win, SDL_CreateWindow("SDL3's GPU API!!!", WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_EXTERNAL));
-	ASSIORFAIL(s_gpudev, SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV, true, nullptr));
+
+#ifdef DEBUG
+	const bool gpu_debug_mode = true;
+#else
+	const bool gpu_debug_mode = false;
+#endif
+	ASSIORFAIL(s_gpudev, SDL_CreateGPUDevice(SDL_GPU_SHADERFORMAT_SPIRV, gpu_debug_mode, nullptr));
 	FAILON(SDL_ClaimWindowForGPUDevice(s_gpudev, s_win));
 
 	const char vert_shader_code[] = {
