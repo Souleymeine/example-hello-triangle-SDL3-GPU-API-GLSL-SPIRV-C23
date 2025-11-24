@@ -2,6 +2,7 @@
 #include <SDL3/SDL_gpu.h>
 #include "SDLerr_helper.h"
 
+
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
 
@@ -170,7 +171,6 @@ int main()
 	SDL_EndGPURenderPass(render_pass);
 	FAILON(SDL_SubmitGPUCommandBuffer(cmdbuf));
 
-
 //	--- Main Loop ---
 	SDL_Event event;
 	while (running) {
@@ -181,7 +181,6 @@ int main()
 		}
 	}
 //	End Main Loop ---
-
 
 	SDL_ReleaseGPUBuffer(s_gpudev, s_vertbuf);
 	SDL_ReleaseGPUTransferBuffer(s_gpudev, s_transferbuf);
