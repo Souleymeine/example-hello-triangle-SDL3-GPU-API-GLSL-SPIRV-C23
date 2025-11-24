@@ -1,5 +1,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_gpu.h>
+#include <SDL3/SDL_timer.h>
+#include <stdio.h>
 #include "SDLerr_helper.h"
 
 
@@ -13,7 +15,6 @@ static SDL_GPUTransferBuffer* s_transferbuf;
 static SDL_GPUGraphicsPipeline* s_graphics_pipeline;
 
 volatile bool running = true;
-
 
 struct vertex {
 	float x, y, z;    // vec3 position
@@ -179,10 +180,9 @@ int main()
 //	--- Main Loop ---
 	SDL_Event event;
 	while (running) {
-		while (SDL_PollEvent(&event)) {
-			if (event.type == SDL_EVENT_QUIT) {
-				running = false;
-			}
+		if (SDL_WaitEvent(&event)
+			&& (event.type == SDL_EVENT_QUIT || event.key.key == SDLK_ESCAPE)) {
+			running = false;
 		}
 	}
 //	End Main Loop ---
