@@ -1,20 +1,16 @@
+#include <stdio.h>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_gpu.h>
-#include <SDL3/SDL_timer.h>
-#include <stdio.h>
 #include "SDLerr_helper.h"
 
 
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
+static volatile bool running = true;
 
 static SDL_Window* s_win;
 static SDL_GPUDevice* s_gpudev;
 static SDL_GPUBuffer* s_vertbuf;
 static SDL_GPUTransferBuffer* s_transferbuf;
 static SDL_GPUGraphicsPipeline* s_graphics_pipeline;
-
-volatile bool running = true;
 
 struct vertex {
 	float x, y, z;    // vec3 position
@@ -50,8 +46,7 @@ int main()
 {
 	FAILON(SDL_Init(SDL_INIT_VIDEO));
 
-	ASSIORFAIL(s_win, SDL_CreateWindow("SDL3's GPU API!!!", WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_EXTERNAL));
-
+	ASSIORFAIL(s_win, SDL_CreateWindow("SDL3's GPU API!!!", 800, 600, SDL_WINDOW_EXTERNAL));
 #ifdef DEBUG
 	constexpr bool gpu_debug_mode = true;
 #else
@@ -150,9 +145,8 @@ int main()
 	FAILON(SDL_SubmitGPUCommandBuffer(cmdbuf));
 
 	SDL_GPUTexture* swpchain_tex;
-	uint32_t width, height;
 	ASSIORFAIL(cmdbuf, SDL_AcquireGPUCommandBuffer(s_gpudev));
-	FAILON(SDL_WaitAndAcquireGPUSwapchainTexture(cmdbuf, s_win, &swpchain_tex, &width, &height));
+	FAILON(SDL_WaitAndAcquireGPUSwapchainTexture(cmdbuf, s_win, &swpchain_tex, nullptr, nullptr));
 
 	SDL_GPURenderPass* render_pass = SDL_BeginGPURenderPass(cmdbuf,
 		&(struct SDL_GPUColorTargetInfo) {
