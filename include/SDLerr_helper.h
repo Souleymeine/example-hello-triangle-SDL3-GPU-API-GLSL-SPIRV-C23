@@ -5,6 +5,10 @@
 
 #define _LOG_SDL_ERROR(file, line) fprintf(stderr, "\x1b[31mERROR\x1b[m at %s:%d, \"%s\" (<- SDL errmsg)\n", file, line, SDL_GetError())
 
+/**
+ * do while ensures you have to put a semi-colon at the end of the macro
+ * */
+
 #ifdef DEBUG
 #define FAIL_ON_RET(expr, ret, line, file) \
 do {                                       \
