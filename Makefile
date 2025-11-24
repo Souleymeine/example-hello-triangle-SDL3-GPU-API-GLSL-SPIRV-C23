@@ -13,7 +13,7 @@ OPT    = false
 CFLAGS = -g3 -DDEBUG
 STDC   = c23
 ifeq ($(OPT), true)
-  CFLAGS = -O2 -DNDEBUG
+  CFLAGS = -O2 -DNDEBUG -s
 endif
 
 $(eval $(shell mkdir -p $(build_dir)/shader))
