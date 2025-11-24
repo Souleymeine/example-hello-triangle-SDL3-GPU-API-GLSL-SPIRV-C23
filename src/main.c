@@ -131,7 +131,7 @@ int main()
 			.offset = 0, // begin writing from the first vertex
 		}, true
 	);
-	SDL_EndGPUCopyPass(cpy_pass);
+	SDL_EndGPUCopyPass(cpy_pass); /* end cpy_pass -------------------------------- */
 	FAILON(SDL_SubmitGPUCommandBuffer(cmdbuf));
 
 	SDL_GPUTexture* swpchain_tex;
