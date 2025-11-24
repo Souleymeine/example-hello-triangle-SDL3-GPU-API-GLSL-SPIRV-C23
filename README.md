@@ -13,11 +13,11 @@ You must have :
 
 *Then :*
 ```
-$ make run
+make run
 ```
 *or if you want to disable debugging :*
 ```
-$ make run OPT=true
+make run OPT=true
 ```
 
 The example code is pretty small, about 180 lines as I do my first commit, hope that can help you out.
