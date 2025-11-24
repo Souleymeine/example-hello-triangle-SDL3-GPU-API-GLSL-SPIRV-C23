@@ -7,7 +7,7 @@ Now I'm happy to share my own implementation of it with the internet, if that ca
 
 # TL;DR
 You must have :
-- GNU make (you can install it on Windows with mingw)
+- GNU make (you can install it on Windows with [mingw](https://www.mingw-w64.org/))
 - A C compiler which supports C23 (if you want to run the code without any adjustment)
 - The glslang compiler (or any other glsl compiler if you're willing to tweak the Makefile just a little, it's small)
 
@@ -23,7 +23,7 @@ make run OPT=true
 The example code is pretty small, about 180 lines as I do my first commit, hope that can help you out.
 
 ## About The absolute sorcery I did for error handling...
-I tweaked the tutorial a little in its syntax and tried to get it to be as small as possible. For this reason, I created a "*tiny*" helper header (include/SDLerr_helper.h) which includes some macro abuse (yes), but which ended up removing a ton of boiler plate while maintaining a verbose error handling. If you want to get rid of it, simply replace the macros `FAILON`, `ASSIORFAIL` and `DECLORFAIL` with regular statements/assignment/declarations.
+I tweaked the tutorial a little in its syntax and tried to get it to be as small as possible. For this reason, I created a "*tiny*" helper header [(include/SDLerr_helper.h)](https://github.com/Souleymeine/example-hello-triangle-SDL3-GPU-API-GLSL-SPIRV-C23/blob/main/include/SDLerr_helper.h) which includes some macro abuse (yes), but ended up removing a ton of boilerplate while maintaining a verbose error handling. If you want to get rid of it, simply replace the macros `FAILON`, `ASSIORFAIL` and `DECLORFAIL` with regular statements/assignment/declarations.
 What it does is :
 - nothing if the given expression (SDL function in our case) returns succesfully (return true)
 - return -1 and thus ends the program while printing an error message with filename and line if the functionreturned an error (false)
