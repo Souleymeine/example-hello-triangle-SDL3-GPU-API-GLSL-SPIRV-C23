@@ -1,4 +1,4 @@
-# Example Hello World triangle with SDL3's GPU API, SPIRV and C23
+# Example hello triangle with SDL3's GPU API, SPIRV and C23
 
 While browsing the internet for an example C implementation of [the Vulkan Hello World tutorial](https://docs.vulkan.org/tutorial/latest/00_Introduction.html) (which is only presented with c++20 and GLFW), I came across a few example repositories, like [this one](https://github.com/lonelydevil/Vulkan-Triangle) or [this one](https://github.com/stevelittlefish/c_vulkan_sdl3) which I found really useful. However, it did not took me long to realize I was simply not ready to spend a few weeks trying to understand my first 1000 lines of Vulkan when all my lurking math exams were menacing my first semester at my univerity.
 I thus decided it would be fun to try SDL3's new GPU API, which provides a thin abstraction layer to the lower/lowest graphics APIs like Vulkan, Metal, DX12 and the like.
