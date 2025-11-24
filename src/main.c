@@ -22,10 +22,10 @@ struct vertex {
 };
 
 static constexpr struct vertex tri_verts[3] =
-{	// top, left, right
-	{ 0.0f, 0.5f, 0.0f,    1.0f, 0.0f, 0.0f, 1.0f },
-	{ -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 1.0f },
-	{ 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 1.0f, 1.0f }
+{
+	{ 0.0f, 0.5f, 0.0f,    1.0f, 0.0f, 0.0f, 1.0f }, // top
+	{ -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 1.0f }, // left
+	{ 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 1.0f, 1.0f }, // right
 };
 
 static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], size_t code_size, SDL_GPUShaderStage shader_stage,
