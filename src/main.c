@@ -18,13 +18,13 @@ struct vertex {
 };
 
 static constexpr struct vertex tri_verts[3] = {
-	{ 0.0f, 0.5f, 0.0f,    1.0f, 0.0f, 0.0f, 1.0f }, // top
-	{ -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 1.0f }, // left
-	{ 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 1.0f, 1.0f }, // right
+	{  0.0f,  0.5f, 0.0f,	1.0f, 0.0f, 0.0f, 1.0f }, // top
+	{ -0.5f, -0.5f, 0.0f,	1.0f, 1.0f, 0.0f, 1.0f }, // left
+	{  0.5f, -0.5f, 0.0f,	1.0f, 0.0f, 1.0f, 1.0f }, // right
 };
 
 static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], size_t code_size, SDL_GPUShaderStage shader_stage,
-	uint32_t sampler_cnt, uint32_t uniformbuf_cnt, uint32_t storagebuf_cnt, uint32_t storage_tex_Cnt)
+	uint32_t sampler_cnt, uint32_t uniformbuf_cnt, uint32_t storagebuf_cnt, uint32_t storage_tex_cnt)
 {
 	return SDL_CreateGPUShader(device, &(struct SDL_GPUShaderCreateInfo) {
 		.code = (unsigned char*)code,
@@ -35,7 +35,7 @@ static SDL_GPUShader* create_shader(SDL_GPUDevice* device, const char code[], si
 		.num_samplers = sampler_cnt,
 		.num_uniform_buffers = uniformbuf_cnt,
 		.num_storage_buffers = storagebuf_cnt,
-		.num_storage_textures = storage_tex_Cnt
+		.num_storage_textures = storage_tex_cnt
 	});
 }
 
@@ -62,7 +62,6 @@ int main()
 	DECLORFAIL(SDL_GPUShader*, frag_shader, create_shader(s_gpudev, frag_shader_code, sizeof(frag_shader_code), SDL_GPU_SHADERSTAGE_FRAGMENT, 0, 0, 0, 0));
 	ASSIORFAIL(s_graphics_pipeline, SDL_CreateGPUGraphicsPipeline(s_gpudev, &(struct SDL_GPUGraphicsPipelineCreateInfo) {
 		.target_info = {
-			.num_color_targets = 1,
 			.color_target_descriptions = (struct SDL_GPUColorTargetDescription[1]) {{
 				.format = SDL_GetGPUSwapchainTextureFormat(s_gpudev, s_win),
 				.blend_state.enable_blend = true,
@@ -73,15 +72,15 @@ int main()
 				.blend_state.src_alpha_blendfactor = SDL_GPU_BLENDFACTOR_SRC_ALPHA,
 				.blend_state.dst_alpha_blendfactor = SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
 			}},
+			.num_color_targets = 1,
 		},
-		.vertex_input_state.num_vertex_buffers = 1,
 		.vertex_input_state.vertex_buffer_descriptions = (struct SDL_GPUVertexBufferDescription[1]) {{
 			.slot = 0,
 			.input_rate = SDL_GPU_VERTEXINPUTRATE_VERTEX,
 			.instance_step_rate = 0,
 			.pitch = sizeof(struct vertex),
 		}},
-		.vertex_input_state.num_vertex_attributes = 2,
+		.vertex_input_state.num_vertex_buffers = 1,
 		.vertex_input_state.vertex_attributes = (struct SDL_GPUVertexAttribute[2]) {
 			{	// a_position
 				.buffer_slot = 0, // fetch data from the buffer at slot 0
@@ -96,6 +95,7 @@ int main()
 				.offset = sizeof(float) * 3, // 4th float from current buffer position
 			}
 		},
+		.vertex_input_state.num_vertex_attributes = 2,
 		.rasterizer_state.fill_mode = SDL_GPU_FILLMODE_FILL,
 		.primitive_type = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
 		.vertex_shader = vert_shader,
